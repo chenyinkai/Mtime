@@ -1,0 +1,16 @@
+今日热点 http://m.mtime.cn/Service/callback.mi/PageSubArea/GetFirstPageAdvAndNews.api
+热门搜索 http://m.mtime.cn/Service/callback.mi/Search/HotKeyWords.api
+搜索 http://m.mtime.cn/Service/callback.mi/Showtime/SearchVoice.api?keyword=a&pageIndex=1&searchType=3&locationId=493
+搜索页面有广告：商品详情 http://m.mtime.cn/Service/callback-mall.mi/product/detail.api?goodsId=105718&locationId=493
+商品图文详情 http://m.mtime.cn/Service/callback.mi/ECommerce/GoodsImageTextInfo.api?goodsId=105718&pageIndex=1
+商品推荐 http://m.mtime.cn/Service/callback.mi/ECommerce/RecommendProducts.api?goodsIds=105718&pageIndex=1
+
+
+头部导航  首页 商城 发现
+
+首页 定位 搜索 正在上映，即将上映，今日热点
+
+
+
+
+底部
