@@ -34,6 +34,7 @@
 	#search-bar{
 		.fixed(0,1rem);
 		.wh(100%,1rem);
+		z-index: 999;
 		.flex();
 		background-color: #f6f6f6;
 	}

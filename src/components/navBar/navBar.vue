@@ -33,6 +33,7 @@
 	#nav{
 		.wh(100%,1rem);
 		.fixed;
+		z-index: 999;
 		background-color: #1c2635;
 		.sc(.32rem,#fff);
 		display: flex;

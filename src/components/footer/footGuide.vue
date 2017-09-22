@@ -37,7 +37,6 @@
 	#footer{
 		position: absolute;
 		left: 0;
-		bottom: 0;
 		.wh(100%,3rem);
 	}
 	.footer-top{

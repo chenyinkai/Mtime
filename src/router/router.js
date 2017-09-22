@@ -1,5 +1,5 @@
 // import App from '../App.vue';
-
+const index = r => require.ensure([], () => r(require('../page/index/index.vue')), 'index');
 const home = r => require.ensure([], () => r(require('../page/home/home.vue')), 'home');
 const hot = r => require.ensure([], () => r(require('../page/home/children/hot.vue')), 'hot');
 const come = r => require.ensure([], () => r(require('../page/home/children/come.vue')), 'come');
@@ -10,7 +10,11 @@ const list = r => require.ensure([], () => r(require('../page/search/children/li
 export default [
 	{
     path: '/',
-    redirect: '/citylist'
+    redirect: '/index'
+  },
+  {
+    path: "/index",
+    component: index
   },
   {
     path: '/home',   //home
