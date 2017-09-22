@@ -4,82 +4,31 @@
 		<search-bar showPlace="true"></search-bar>
 		<div class="hot">
 			<router-link tag="div" class="title" to="/home/hot">
-				<span>正在热映（88）部</span>
+				<span>正在热映（{{movieList.totalComingMovie}}）部</span>
 				<span>></span>
 			</router-link>
 			<div class="movie-list">
-				<div class="movie">
-					<img src="../../images/get.jpg" alt="">
-					<h3>刀剑神域：序列之争</h3>
-					<span>7.8</span>
-				</div>
-				<div class="movie">
-					<img src="../../images/get.jpg" alt="">
-					<h3>刀剑神域：序列之争</h3>
-					<span>7.8</span>
-				</div>
-				<div class="movie">
-					<img src="../../images/get.jpg" alt="">
-					<h3>刀剑神域：序列之争</h3>
-					<span>7.8</span>
-				</div>
-				<div class="movie">
-					<img src="../../images/get.jpg" alt="">
-					<h3>刀剑神域：序列之争</h3>
-					<span>7.8</span>
-				</div>
-				<div class="movie">
-					<img src="../../images/get.jpg" alt="">
-					<h3>刀剑神域：序列之争</h3>
-					<span>7.8</span>
-				</div>
-				<div class="movie">
-					<img src="../../images/get.jpg" alt="">
-					<h3>刀剑神域：序列之争</h3>
-					<span>7.8</span>
-				</div>
-				<div class="movie">
-					<img src="../../images/get.jpg" alt="">
-					<h3>刀剑神域：序列之争</h3>
-					<span>7.8</span>
-				</div>
-				<div class="movie">
-					<img src="../../images/get.jpg" alt="">
-					<h3>刀剑神域：序刀剑神域：序列之争刀剑神域：序列之争列之争</h3>
-					<span>7.8</span>
+				<div class="movie" v-for="item in hotMovieList" :data-id="item.id">
+					<img :src="item.img" alt="">
+					<h3>{{item.tCn}}</h3>
+					<span>{{item.r}}</span>
 				</div>
 			</div>
 		</div>
 		<router-link tag="div" to="/home/come" class="title pad">
-			<span>正在热映（88）部</span>
+			<span>正在热映（{{comeMovieTotal}}）部</span>
 			<span>></span>
 		</router-link>
 		<div class="news-list">
 			<div class="title">今日热点</div>
-			<div class="news">
-				<img src="../../images/get.jpg" alt="">
+			<router-link :to="{ name: 'newsDetail', params: { newsId: val.id }}" tag="div" class="news" v-for="(val,index) in hotPoints" :data-id="val.id" :key = "index">
+				<img :src="val.img" alt="">
 				<div class="detail">
-					<h3>回望电影中的战争</h3>
-					<p>回望电影中的战争回望电影中的战争</p>
-					<span>2017-08-25 00:00:00</span>
+					<h3>{{val.title}}</h3>
+					<p>{{val.desc}}</p>
+					<span>{{time(val.publishTime)}}</span>
 				</div>
-			</div>
-			<div class="news">
-				<img src="../../images/get.jpg" alt="">
-				<div class="detail">
-					<h3>回望电影中的战争</h3>
-					<p>回望电影中的战争回望电影中的战争</p>
-					<span>2017-08-25 00:00:00</span>
-				</div>
-			</div>
-			<div class="news">
-				<img src="../../images/get.jpg" alt="">
-				<div class="detail">
-					<h3>回望电影中的战争</h3>
-					<p>回望电影中的战争回望电影中的战争</p>
-					<span>2017-08-25 00:00:00</span>
-				</div>
-			</div>
+			</router-link>
 		</div>
 		<foot-guide></foot-guide>
 
@@ -94,13 +43,55 @@
 	export default{
 		data() {
 			return{
-
+				movieList: {},
+				comeMovieTotal: "",
+				hotPoints:[]
 			}
 		},
 		components:{
 			navBar,
 			searchBar,
 			footGuide
+		},
+		beforeMount() {
+			let cityId = window.localStorage.getItem("cityId") || 290;
+			let that = this;
+			this.$http.get('list/Showtime/LocationMovies.api?locationId=' + cityId)
+			.then(function(data){
+				that.movieList = data.data;
+			});
+			this.$http.get("list/Movie/MovieComingNew.api?locationId=" + cityId)
+			.then(function(data){
+				that.comeMovieTotal = data.data.moviecomings.length;
+			});
+			this.$http.get("list/PageSubArea/GetFirstPageAdvAndNews.api")
+			.then(function(data){
+				that.hotPoints = data.data.hotPoints;
+			});
+		},
+		computed:{
+			hotMovieList() {
+				if(this.movieList.ms){
+					return this.movieList.ms.slice(0,8);
+				}
+			}
+		},
+		methods:{
+			time(inputTime){
+		    var date = new Date(inputTime);
+		    var y = date.getFullYear();
+		    var m = date.getMonth() + 1;
+		    m = m < 10 ? ('0' + m) : m;
+		    var d = date.getDate();
+		    d = d < 10 ? ('0' + d) : d;
+		    var h = date.getHours();
+		    h = h < 10 ? ('0' + h) : h;
+		    var minute = date.getMinutes();
+		    var second = date.getSeconds();
+		    minute = minute < 10 ? ('0' + minute) : minute;
+		    second = second < 10 ? ('0' + second) : second;
+		    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+			}
 		}
 	}
 </script>
@@ -144,6 +135,7 @@
 				margin-bottom: .2rem;
 				img{
 					width: 100%;
+					height: 2.3rem;
 				}
 				h3{
 					display: -webkit-box;
@@ -176,13 +168,23 @@
 				border-bottom: 1px solid #ccc;
 				img{
 					width: 35%;
+					height: 100%;
 					margin-right: .2rem;
 				}
 				.detail{
 					flex:1;
-					height: 5rem;
 					.flex(space-between,space-between);
 					flex-direction: column;
+					h3{
+						.sc(.36rem,#000);
+					}
+					p{
+						.sc(.3rem,#666);
+						margin: .2rem 0;
+					}
+					span{
+						.sc(.26rem,#ccc);
+					}
 				}
 			}
 		}
