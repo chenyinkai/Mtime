@@ -33,7 +33,7 @@ export default [
     ]
 	},
 	{
-    path: '/news/comment',   //新闻评论
+    path: '/news/comment/:newsId',   //新闻评论
 		name: 'newsComment',
 		component: newsComment
 	},
