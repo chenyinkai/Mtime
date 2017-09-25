@@ -25,6 +25,7 @@
 		.wh(100%,1rem);
 		.flex();
 		.fixed;
+		z-index: 9;
 		background-color: #1c2635;
 		.sc(.32rem,#fff);
 		h3{
@@ -37,4 +38,4 @@
 			left: 5%;
 		}
 	}
-</style> 	
+</style>

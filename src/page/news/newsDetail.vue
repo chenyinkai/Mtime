@@ -55,9 +55,9 @@ import shade from '../../components/common/shade.vue'
 export default {
   data(){
     return{
-      newsId:"",
-      newsDetail:{},
-      relationstShow: false
+      newsId:"",                   //新闻ID
+      newsDetail:{},               //新闻详情
+      relationstShow: false        //相关影片状态
     }
   },
   components:{
@@ -66,7 +66,7 @@ export default {
     headTop,
     shade
   },
-  mounted() {
+  beforeMount() {
     document.documentElement.scrollTop = document.body.scrollTop = 0;
     let newsId = this.$route.params.newsId;
     this.newsId = newsId;
@@ -74,7 +74,6 @@ export default {
     this.$http.get('list/News/Detail.api?newsId=' + newsId)
     .then(function(data){
       _this.newsDetail = data.data;
-      console.log(_this.newsDetail);
     })
   },
   methods:{
