@@ -39,6 +39,7 @@
 	import city from '../../config/city.json';
 	import backtop from '../../components/common/backtop'
 	import commonHeader from '../../components/header/head'
+	import {mapState,mapMutations} from 'vuex'
 
 	export default{
 		name: "citylist",
@@ -67,16 +68,24 @@
 		computed: {
 			hotCity() {
 				return this.citylist.slice(0,8);
-			}
+			},
+			...mapState([
+        'cityId',
+        'cityName'
+      ])
 		},
 		methods: {
+			...mapMutations([
+        'CHOOSE_CITYID',
+        'CHOOSE_CITYNAME',
+        'CHOOSE_CITY'
+      ]),
 			getCity(e) {
-				//通过传递参数取得属性
-				let name = e.target.innerText;
+				//通过传递 $event 取得属性
 				let id = e.target.getAttribute('data-cityid');
-				window.localStorage.setItem("cityId",id);
-				window.localStorage.setItem("cityName",name);
-				this.$router.push({path: '/home/hot'});
+				let name = e.target.innerText;
+				this.CHOOSE_CITY({id,name});
+				this.$router.push({path: '/index'});
 			},
 			search(ev) {
 				let n = -1;

@@ -96,6 +96,8 @@
 	</div>
 </template>
 <script>
+	import { mapState } from 'vuex'
+
 	export default{
 		data() {
 			return {
@@ -109,14 +111,17 @@
 				personscount: "loading"   //影人数目
 			}
 		},
+		computed:{
+			...mapState([
+        'cityId'
+      ])
+		},
 		mounted() {
 			let that = this;
 			let keyword = this.$route.params.keyword;
-			let cityId = window.localStorage.getItem("cityId");
 			this.keyword = keyword;
-			this.$http.get("list/Showtime/SearchVoice.api?keyword="+keyword+"&pageIndex=1&searchType=3&locationId=" + cityId)
+			this.$http.get("list/Showtime/SearchVoice.api?keyword="+keyword+"&pageIndex=1&searchType=3&locationId=" + this.cityId)
 			.then(function(data){
-				console.log(data);
 				that.locationCinemas = data.data.locationCinemas;
 				that.locationCinemasCount = data.data.locationCinemasCount || 0;
 				that.movies = data.data.movies;

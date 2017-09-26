@@ -32,6 +32,7 @@
 <script>
 	import headTop from '../header'
 	import searchBar from '../../../components/common/searchBar'
+	import { mapState } from 'vuex'
 
 	export default {
 		data() {
@@ -43,10 +44,14 @@
 			headTop,
 			searchBar
 		},
-		beforeMount() {
-			let cityId = window.localStorage.getItem("cityId") || 290;
+		computed: {
+			...mapState([
+        'cityId'
+      ])
+		},
+		mounted() {
 			let that = this;
-			this.$http.get('list/Showtime/LocationMovies.api?locationId=' + cityId)
+			this.$http.get('list/Showtime/LocationMovies.api?locationId=' + this.cityId)
 			.then(function(data){
 				that.movieList = data.data;
 			})

@@ -30,6 +30,7 @@
 	import commonHeader from "../../components/header/head"
 	import searchBar from "../../components/common/searchBar"
 	import "../../plugins/swiper.min.js"
+	import { mapState } from 'vuex'
 
 	export default {
 		data() {
@@ -42,10 +43,14 @@
 			commonHeader,
 			searchBar
 		},
+		computed:{
+			...mapState([
+        'cityId'
+      ])
+		},
 		mounted() {
 			let that = this;
-			let cityId = window.localStorage.getItem("cityId") || 290;
-			this.$http.get("/list/Advertisement/MobileAdvertisementInfo.api?locationId=" + cityId)
+			this.$http.get("/list/Advertisement/MobileAdvertisementInfo.api?locationId=" + this.cityId)
 			.then(function(data){
 				that.advList = data.data.advList.slice(0,2);
 				that.$nextTick(function(){

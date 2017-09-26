@@ -37,6 +37,7 @@
 	import '../../../plugins/swiper.min.js'
 	import headTop from '../header'
 	import searchBar from '../../../components/common/searchBar'
+	import { mapState } from 'vuex'
 
 	export default{
 		data() {
@@ -49,11 +50,15 @@
 			headTop,
 			searchBar
 		},
+		computed: {
+			...mapState([
+        'cityId'
+      ])
+		},
 		mounted() {
 			//获取数据
 			let that = this;
-			let cityId = window.localStorage.getItem("cityId") || 290;
-			this.$http.get("list/Movie/MovieComingNew.api?locationId=" + cityId)
+			this.$http.get("list/Movie/MovieComingNew.api?locationId=" + this.cityId)
 			.then(function(data){
 				that.attentionMovieList = data.data.attention;
 				that.movieComingList = data.data.moviecomings;

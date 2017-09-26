@@ -11,15 +11,17 @@
 	</div>
 </template>
 <script>
+	import { mapState } from 'vuex'
+
 	export default{
 		data() {
 			return{
-				cityName: ""
 			}
 		},
-		created() {
-			let city = window.localStorage.getItem("cityName") || "上海";
-			this.cityName = city;
+		computed: {
+			...mapState([
+        'cityName'
+      ])
 		},
 		props:["showPlace"],
 		methods:{

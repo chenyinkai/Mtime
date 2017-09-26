@@ -182,6 +182,9 @@ export default {
           .sc(.24rem,#999);
           margin-bottom: .2rem;
         }
+        .reply-content{
+          .sc(.24rem,#999);
+        }
       }
     }
   }

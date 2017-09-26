@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<router-link tag="div" to="/home/come" class="title pad">
-			<span>正在热映（{{comeMovieTotal}}）部</span>
+			<span>即将热映（{{comeMovieTotal}}）部</span>
 			<span>></span>
 		</router-link>
 		<div class="news-list">
@@ -39,6 +39,7 @@
 	import navBar from "../../components/navBar/navBar"
 	import searchBar from "../../components/common/searchBar"
 	import footGuide from "../../components/footer/footGuide"
+	import { mapState } from 'vuex'
 
 	export default{
 		data() {
@@ -53,14 +54,13 @@
 			searchBar,
 			footGuide
 		},
-		beforeMount() {
-			let cityId = window.localStorage.getItem("cityId") || 290;
+		mounted() {
 			let that = this;
-			this.$http.get('list/Showtime/LocationMovies.api?locationId=' + cityId)
+			this.$http.get('list/Showtime/LocationMovies.api?locationId=' + this.cityId)
 			.then(function(data){
 				that.movieList = data.data;
 			});
-			this.$http.get("list/Movie/MovieComingNew.api?locationId=" + cityId)
+			this.$http.get("list/Movie/MovieComingNew.api?locationId=" + this.cityId)
 			.then(function(data){
 				that.comeMovieTotal = data.data.moviecomings.length;
 			});
@@ -74,7 +74,10 @@
 				if(this.movieList.ms){
 					return this.movieList.ms.slice(0,8);
 				}
-			}
+			},
+			...mapState([
+        'cityId'
+      ])
 		},
 		methods:{
 			time(inputTime){
