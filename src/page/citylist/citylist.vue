@@ -76,8 +76,6 @@
 		},
 		methods: {
 			...mapMutations([
-        'CHOOSE_CITYID',
-        'CHOOSE_CITYNAME',
         'CHOOSE_CITY'
       ]),
 			getCity(e) {
