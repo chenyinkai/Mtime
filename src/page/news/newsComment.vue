@@ -2,7 +2,7 @@
   <div id="news-comment">
     <head-top :title="title"></head-top>
     <div class="commen-list">
-      <div class="user-comment" v-for="(item,index) in comment" :data-id="item.id">
+      <div class="user-comment" v-for="(item,index) in comment" :data-id="item.id" :key="index">
         <div class="user-img">
           <img :src="item.userImage" alt="">
         </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="reply-list" v-if="item.replyCount != 0">
           <div class="triangle"></div>
-          <div class="reply" v-for="val in item.replies" :data-id="val.id">
+          <div class="reply" v-for="(val,index) in item.replies" :data-id="val.id" :key="index">
             <div class="reply-name">
               <h3>{{val.nickname}}</h3>
               <span>{{val.date}}</span>

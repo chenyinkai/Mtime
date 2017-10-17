@@ -9,7 +9,7 @@
 		<div class="pad">
 			<div class="attention swiper-container">
 				<ul class="swiper-wrapper">
-					<li class="movie swiper-slide" v-for="item in attentionMovieList" :data-movieid="item.id">
+					<li class="movie swiper-slide" v-for="item in attentionMovieList" :data-movieid="item.id" :key="item.title">
 						<span class="time">{{item.releaseDate}}</span>
 						<div class="movie-img">
 							<img :src="item.image" alt="">
@@ -64,7 +64,9 @@
 				that.movieComingList = data.data.moviecomings;
 				that.$nextTick(function(){
           new Swiper('.swiper-container', {
-		        loop: true
+		        loop: true,
+						autoplay: 1000,//可选选项，自动滑动
+						autoplayDisableOnInteraction : false,
 			    });
         })
 			});
