@@ -6,6 +6,7 @@ const come = r => require.ensure([], () => r(require('../page/home/children/come
 const citylist = r => require.ensure([], () => r(require('../page/citylist/citylist.vue')), 'citylist');
 const search = r => require.ensure([], () => r(require('../page/search/search.vue')), 'search');
 const list = r => require.ensure([], () => r(require('../page/search/children/list.vue')), 'list');
+const news = r => require.ensure([], () => r(require('../page/news/news.vue')), 'news');
 const newsDetail = r => require.ensure([], () => r(require('../page/news/newsDetail.vue')), 'newsDetail');
 const newsComment = r => require.ensure([], () => r(require('../page/news/newsComment.vue')), 'newsComment');
 
@@ -31,7 +32,11 @@ export default [
         component: come
       }
     ]
-	},
+  },
+  {
+    path:'/news',
+    component:news
+  },
 	{
     path: '/news/comment/:newsId',   //新闻评论
 		name: 'newsComment',

@@ -6,10 +6,10 @@
 			</router-link>
 		</div>
 		<ul class="tab">
-			<router-link to="/index" tag="li" class="active">首页</router-link>
-			<router-link to="/index" tag="li">购票</router-link>
-			<router-link to="/index" tag="li">商城</router-link>
-			<router-link to="/index" tag="li">发现</router-link>
+			<router-link to="/index" tag="li" :class="active==0?'active':''">首页</router-link>
+			<router-link to="/index" tag="li" :class="active==1?'active':''">购票</router-link>
+			<router-link to="/index" tag="li" :class="active==2?'active':''">商城</router-link>
+			<router-link to="/news" tag="li" :class="active==3?'active':''">发现</router-link>
 		</ul>
 		<router-link to="/index" tag="div" class="person">
 			<img src="../../images/ico_my.png" alt="">
@@ -22,7 +22,7 @@
 			return{
 			}
 		},
-		props:[],
+		props:["active"],
 		methods: {
 		}
 	}

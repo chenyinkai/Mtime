@@ -1,6 +1,6 @@
 <template>
 	<div id="index">
-		<nav-bar></nav-bar>
+		<nav-bar active="0"></nav-bar>
 		<search-bar showPlace="true"></search-bar>
 		<div class="hot">
 			<router-link tag="div" class="title" to="/home/hot">
@@ -8,7 +8,7 @@
 				<span>></span>
 			</router-link>
 			<div class="movie-list">
-				<div class="movie" v-for="item in hotMovieList" :data-id="item.id">
+				<div class="movie" v-for="(item,i) in hotMovieList" :data-id="item.id" :key="i">
 					<img :src="item.img" alt="">
 					<h3>{{item.tCn}}</h3>
 					<span>{{item.r}}</span>
