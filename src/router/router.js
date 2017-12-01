@@ -6,9 +6,12 @@ const come = r => require.ensure([], () => r(require('../page/home/children/come
 const citylist = r => require.ensure([], () => r(require('../page/citylist/citylist.vue')), 'citylist');
 const search = r => require.ensure([], () => r(require('../page/search/search.vue')), 'search');
 const list = r => require.ensure([], () => r(require('../page/search/children/list.vue')), 'list');
-const news = r => require.ensure([], () => r(require('../page/news/news.vue')), 'news');
-const newsDetail = r => require.ensure([], () => r(require('../page/news/newsDetail.vue')), 'newsDetail');
-const newsComment = r => require.ensure([], () => r(require('../page/news/newsComment.vue')), 'newsComment');
+const news = r => require.ensure([], () => r(require('../page/discover/news/news.vue')), 'news');
+const newsDetail = r => require.ensure([], () => r(require('../page/discover/news/newsDetail.vue')), 'newsDetail');
+const newsComment = r => require.ensure([], () => r(require('../page/discover/news/newsComment.vue')), 'newsComment');
+const trailer = r => require.ensure([], () => r(require('../page/discover/trailer/trailer.vue')), 'news');
+const toplist = r => require.ensure([], () => r(require('../page/discover/toplist/toplist.vue')), 'toplist');
+const review = r => require.ensure([], () => r(require('../page/discover/review/review.vue')), 'review');
 
 export default [
 	{
@@ -16,7 +19,7 @@ export default [
     redirect: '/index'
   },
   {
-    path: "/index",
+    path: "/index",  //首页
     component: index
   },
   {
@@ -34,7 +37,7 @@ export default [
     ]
   },
   {
-    path:'/news',
+    path:'/news',   //新闻
     component:news
   },
 	{
@@ -46,7 +49,19 @@ export default [
     path: '/news/detail/:newsId',   //新闻详情
 		name: 'newsDetail',
 		component: newsDetail
-	},
+  },
+  {
+    path: '/trailer',   //预告片
+    component: trailer
+  },
+  {
+    path: '/toplist',   //排行榜
+    component: toplist
+  },
+  {
+    path: '/review',  //影评
+    component: review
+  },
   {
     path: '/citylist',  //选择城市
     component: citylist

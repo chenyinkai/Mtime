@@ -16,19 +16,19 @@
 			<div class="city-sort" v-if="noSearchResult">
 				<div class="title">热门城市:</div>
 				<ul class="city-list">
-					<li v-for="(item,index) in hotCity" :data-cityid="item.id" @click="getCity($event)">{{item.n}}</li>
+					<li v-for="(item,index) in hotCity" :data-cityid="item.id" @click="getCity($event)" :key="index">{{item.n}}</li>
 				</ul>
 			</div>
-			<div class="city-sort" v-for="item in initial">
+			<div class="city-sort" v-for="(item,i) in initial" :key="i">
 				<div class="title">{{item}}</div>
 				<ul class="city-list">
-					<li v-for="val in citylist" v-if="val.pinyinFull.substring(0,1) == item" :data-cityid="val.id" @click="getCity($event)">{{val.n}}</li>
+					<li v-for="(val,v) in citylist" v-if="val.pinyinFull.substring(0,1) == item" :data-cityid="val.id" @click="getCity($event)" :key="v">{{val.n}}</li>
 				</ul>
 			</div>
 		</div>
 		<div class="search-list" v-if="!hasSearchResult">
 			<ul>
-				<li v-for="city in searchResult" :data-cityid="city.id" @click="getCity($event)">{{city.name}}</li>
+				<li v-for="(city,c) in searchResult" :data-cityid="city.id" @click="getCity($event)" :key="c">{{city.name}}</li>
 			</ul>
 		</div>
 		<!--回到顶部-->

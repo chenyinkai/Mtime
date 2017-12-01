@@ -47,10 +47,10 @@
 </template>
 
 <script>
-import footGuide from '../../components/footer/footGuide'
-import backTop from '../../components/common/backtop.vue'
-import headTop from '../../components/header/head.vue'
-import shade from '../../components/common/shade.vue'
+import footGuide from '../../../components/footer/footGuide'
+import backTop from '../../../components/common/backtop.vue'
+import headTop from '../../../components/header/head.vue'
+import shade from '../../../components/common/shade.vue'
 
 export default {
   data(){
@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../../style/mixin.less";
+@import "../../../style/mixin.less";
 
 #news-detail{
   width: 100%;
@@ -123,7 +123,7 @@ export default {
     height: 1.2rem;
     i{
       .wh(.5rem,.5rem);
-      background: url(../../images/ico_reply.png);
+      background: url(../../../images/ico_reply.png);
       background-size: cover;
       position: relative;
       span{
