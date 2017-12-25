@@ -12,6 +12,10 @@ const newsComment = r => require.ensure([], () => r(require('../page/discover/ne
 const trailer = r => require.ensure([], () => r(require('../page/discover/trailer/trailer.vue')), 'news');
 const toplist = r => require.ensure([], () => r(require('../page/discover/toplist/toplist.vue')), 'toplist');
 const review = r => require.ensure([], () => r(require('../page/discover/review/review.vue')), 'review');
+const login = r => require.ensure([], () => r(require('../page/user/login.vue')), 'login');
+const register = r => require.ensure([], () => r(require('../page/user/register.vue')), 'register');
+
+
 
 export default [
 	{
@@ -76,5 +80,13 @@ export default [
         component: list
       }
     ]
+  },
+  {
+    path: '/login', //登录
+    component: login
+  },
+  {
+    path: '/register', //注册
+    component: register
   }
 ]
